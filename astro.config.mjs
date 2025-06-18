@@ -3,16 +3,12 @@ import tailwind from '@astrojs/tailwind';
 import preact from '@astrojs/preact';
 
 export default defineConfig({
-  site: 'http://localhost:4321',
+  site: 'https://SirE1vis.github.io',
+  base: 'don_lucio',
   
   integrations: [
     tailwind(),
     preact()
   ],
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp'
-    },
-    formats: ['webp', 'png'],
-  }
+  
 });
