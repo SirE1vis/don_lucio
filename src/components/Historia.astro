@@ -1,0 +1,52 @@
+---
+const mainImage = {
+  webp: "/images/nuestra_historia1.webp",
+  jpg: "/images/nuestra_historia1.jpg",
+  alt: "img-historia"
+};
+---
+
+<section class="w-full py-16">
+  <div class="container mx-auto px-4">
+    {/* Title with decorative lines */}
+    <div class="flex items-center justify-center gap-4 mb-16">
+      <span class="w-32 h-[2px] bg-amber-900"></span>
+        <h2 class="text-3xl md:text-4xl font-bold text-amber-900">
+          CONÓCENOS
+        </h2>
+      <span class="w-32 h-[2px] bg-amber-900"></span>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-start justify-between gap-8">
+      {/* Text Content */}
+      <div class="w-full lg:w-1/2  pl-2 md:pl-8 text-amber-900">
+        <span class="w-full flex justify-center text-2xl font-bold py-4 md:py-10">Nuestra Historia</span>
+        <p class="">
+          En el corazón de los Andes peruanos, nació nuestra asociación de productores de queso "Don Lucio" en 1998. Todo comenzó cuando un grupo de familias ganaderas decidió unir fuerzas para preservar las técnicas tradicionales de elaboración de quesos artesanales.
+        </p>
+
+        <p class="py-2 md:py-4">
+          Don Lucio Mamani, fundador y maestro quesero, transmitió su pasión y conocimientos a toda una generación de productores locales. Su visión de crear productos de calidad, respetando las tradiciones y aprovechando la rica leche de las alturas, sentó las bases de lo que hoy es nuestra asociación.
+        </p>
+
+        <p class="">
+          Después de 25 años, seguimos comprometidos con la calidad y la tradición. Hemos crecido hasta convertirnos en una familia de más de 50 productores, todos unidos por el mismo sueño: llevar el auténtico sabor de nuestros quesos artesanales a cada hogar peruano.
+        </p>
+      </div>
+
+      {/* Image Content */}
+      <div class="w-full lg:w-1/2">
+        <picture class="w-full rounded-2xl overflow-hidden block shadow-xl">
+          <source srcset={mainImage.webp} type="image/webp" />
+          <source srcset={mainImage.jpg} type="image/jpg" />
+          <img
+            src={mainImage.jpg}
+            alt={mainImage.alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>

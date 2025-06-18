@@ -1,0 +1,153 @@
+---
+import Button from "@/components/Button.tsx";
+import Logo from "@/components/Logo.astro";
+---
+
+<div
+  class="relative h-dvh w-full max-w-[100vw] md:aspect-video md:h-[80vh] xl:h-full"
+>
+  <div
+    class="absolute top-[230px] inset-0 h-full justify-center z-10 m-auto flex flex-col items-center w-full"
+  >
+    <section
+      class="absolute z-50 animate-fade-up flex justify-center items-center gap-8 flex-col tex-white"
+    >
+      <h1
+        class="flex flex-col sm:flex-row items-center justify-center gap:5 md:gap-10 text-2xl md:text-3xl lg:text-4xl text-white/85 mb-5 text-shadow"
+      >
+        <span
+        >
+          <span>Q</span>
+          <span>U</span>
+          <span>E</span>
+          <span>S</span>
+          <span>O</span>
+        </span>
+        <span>
+          <span>H</span>
+          <span>U</span>
+          <span>A</span>
+          <span>R</span>
+          <span>O</span>
+          <span>C</span>
+          <span>H</span>
+          <span>I</span>
+          <span>R</span>
+          <span>A</span>
+          <span>N</span>
+          <span>O</span>
+        </span>
+      </h1>
+      <h2
+        class="flex items-center h-24 justify-center px-4 gap-5 sm:gap-8 md:gap-12 text-3xl sm:text 4xl md:text-5xl lg:text-7xl text-black/75 bg-amber-600/90 rounded-2xl"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        data-aos-duration="300"
+        >
+        <span
+        data-aos="fade-right"
+        data-aos-delay="100"
+        data-aos-duration="500"
+        
+        >
+          <span>D</span>
+          <span>O</span>
+          <span>N</span>
+        </span>
+        <span
+        data-aos="fade-down"
+        data-aos-delay="100"
+        data-aos-duration="750"
+        >
+          <span>S</span>
+          <span>A</span>
+        </span>
+        <span
+        data-aos="fade-left"
+        data-aos-delay="100"
+        data-aos-duration="1000"
+        >
+          <span>S</span>
+          <span>A</span>
+          <span>A</span>
+        </span>
+      </h2>
+
+      <span
+        class="flex flex-col text-center font-semibold text-lg p-4 rounded-lg md:text-2xl mt-3 mb-10 md:mb-20 text-white/85 text-shadow-2xl text-shadow-black"
+      >
+        <p>Somos una asociación dedicada a la producción artesanal de</p>
+        <p>quesos y derivados lácteos de alta calidad.</p>
+      </span>
+
+      <Button
+        className=" text-black bg-amber-600 text-18px md:text-[20px] tracking-wide font-rocket "
+        url="/contacto"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        data-aos-duration="500"
+      >
+        CONTÁCTANOS
+      </Button>
+    </section>
+
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      id="main-video"
+      preload="metadata"
+      class="video hidden h-full w-full object-cover object-top animate-duration-[2s] animate-ease-in-out"
+    >
+      <source src="/video.webm" type="video/webm" />
+      <source src="/video.mp4" type="video/mp4" />
+    </video>
+    <div
+      class="absolute h-full w-full inset-0 bg-gradient-to-t from-black/85 to-amber-900/65 z-10"
+    >
+    </div>
+  </div>
+
+  
+  <video
+    class="video hidden absolute -bottom-44 -z-40 blur-2xl animate-duration-[2s] animate-ease-in-out"
+    autoplay
+    loop
+    muted
+    preload="metadata"
+  >
+    <source src="/video.webm" />
+    <source src="/video.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const firstVideo = document.querySelector(
+      "#main-video"
+    ) as HTMLMediaElement;
+
+    if (firstVideo) {
+      const videos = document.querySelectorAll(
+        ".video"
+      ) as NodeListOf<HTMLMediaElement>;
+
+      if (firstVideo.readyState >= 3) {
+        videos.forEach((videoEl) => {
+          videoEl.classList.remove("hidden");
+          videoEl.classList.add("animate-fade");
+        });
+
+        return;
+      }
+
+      firstVideo.addEventListener("loadeddata", () => {
+        videos.forEach((videoEl) => {
+          videoEl.classList.remove("hidden");
+          videoEl.classList.add("animate-fade");
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,38 @@
+---
+const backgroundImage = {
+  webp: "/images/bg-nosotros.webp",
+  png: "/images/bg-nosotros.png",
+  alt: "Fondo sección Nosotros",
+};
+---
+
+<section
+  class="relative w-full min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden mt-[100px] mb-5"
+>
+  {/* Background Image with Overlay */}
+  <picture class="absolute inset-0 w-full h-full">
+    <source srcset={backgroundImage.webp} type="image/webp" />
+    <source srcset={backgroundImage.png} type="image/jpg" />
+    <img
+      src={backgroundImage.png}
+      alt={backgroundImage.alt}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    {/* Added gradient overlay */}
+    <div class="absolute inset-0 bg-gradient-to-r from-amber-900/90 to-black/60"></div>
+  </picture>
+
+  {/* Content Overlay - Removed translate-y and added flex container */}
+  <div class="relative z-10 flex flex-col items-center justify-center text-white px-4">
+    <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+      Nosotros
+    </h2>
+
+    <div class="flex items-center justify-center gap-2 text-lg md:text-xl">
+      <span class="text-amber-400">Inicio</span>
+      <span class="text-amber-400">></span>
+      <span class="text-black bg-white/75 rounded-xl px-3 py-1">Nosotros</span>
+    </div>
+  </div>
+</section>

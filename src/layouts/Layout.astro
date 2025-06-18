@@ -1,0 +1,166 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import 'aos/dist/aos.css';
+import "../styles/global.css";
+import Footer from "@/components/Footer.astro"
+import Navbar from "@/components/Navbar.astro";
+import WhatsAppIcon from '@/components/icons/WhatsApp.astro';
+interface Props {
+    title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="prueba" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="robots" content="nofollow, noindex" />
+		<title>{title}</title>
+		<ClientRouter />
+		<link
+		rel="preload"
+		href= "/fonts/poppins.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+		/>
+		<slot name="preload" />
+		<link rel="stylesheet" href="node_modules/aos/dist/aos.css" />
+	</head>
+
+	<body >		
+		<Navbar/>
+		<main >
+            <slot />
+			<a
+				href="https://wa.me/944765755"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-lg hover:scale-105 transition-transform duration-300 animate-border"
+				>
+				<WhatsAppIcon class="w-9 h-9 text-white" />
+			</a>
+        </main>
+		<Footer/>
+
+		<style is:global>
+			 *, 
+		*::before, 
+		*::after {
+        margin: 0;
+        padding: 0;
+    	}
+			
+			@font-face {
+			font-family: 'poppins';
+			font-style: normal;
+			font-display: swap;
+			src: url("/fonts/poppins.woff2") format('woff2');
+			unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,
+			U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+			}
+
+			@font-face {
+			font-family: 'rocket';
+			font-style: bold;
+			font-display: swap;
+			-webkit-font-smoothing: antialiased;
+			src: url("/fonts/rocket.woff") format('woff');
+			unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,
+			U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+			}
+
+			html {
+			font-family: "poppins", system-ui, sans-serif;
+			
+			/* background: #191602f1 */
+			
+			}
+
+			h1,h2,h3 {
+				font-family: "rocket", system-ui, sans-serif;
+			}
+			
+			::-webkit-scrollbar {
+			width: 8px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: transparent;
+				backdrop-filter: blur(10px);
+				border-radius: 5px;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: rgba(255, 255, 255, 0.3);
+				backdrop-filter: blur(10px);
+				border-radius: 5px;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: rgba(0, 0, 0, 0.5);
+			}
+			
+			.text__glowing {
+				transition: text-shadow 0.3s ease;
+			}
+
+			.text__glowing:hover {
+				text-shadow:
+				1px 1px 20px #fff;
+			}
+
+			#header-nav {
+				animation: blur linear both;
+				animation-timeline: scroll();
+				animation-range: 0 500px;
+			}
+			
+
+			@keyframes blur {
+				to {
+				box-shadow:
+					0px 5px 50px -5px rgba(0, 0, 0, 0.1),
+					0px 0px 0 1px rgba(0, 0, 0, 0.3);
+				background: rgba(0, 0, 0, 0.3);
+				backdrop-filter: blur(10px);
+				}
+				}
+			
+			@keyframes border-blink {
+				0% {
+				box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.8);
+				}
+				70% {
+				box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+				}
+				100% {
+				box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+				}
+			}
+
+			.animate-border {
+				animation: border-blink 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+			}
+				
+		</style>
+		<script>
+		import AOS from 'aos';
+		
+		document.addEventListener('astro:page-load', () => {
+			AOS.init({
+			duration: 700,
+			once: false,
+			offset: 200,
+			easing: 'ease-in-out'
+			});
+		});
+		</script>
+		</body>
+
+</html>

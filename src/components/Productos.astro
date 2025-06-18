@@ -1,0 +1,91 @@
+---
+import Button from "@/components/Button.tsx";
+
+const products = [
+  {
+    title: "Queso Fresco Pasteurizado",
+    description: "Queso artesanal elaborado con leche fresca de alta calidad, suave textura y sabor delicado.",
+    image: {
+        png: "/images/queso-fresco.png",
+        webp: "/images/queso-fresco.webp",
+        alt: "queso-fresco"
+    }
+  },
+
+  {
+    title: "Queso con Orégano",
+    description: "Queso madurado con sabor intenso y textura firme, ideal para degustar en familia.",
+    image: {
+        png: "/images/queso-pasteurizado.png",
+        webp: "/images/queso-pasteurizado.webp",
+        alt: "queso con orégano"
+    }
+  },
+
+  {
+    title: "Yogurt Natural",
+    description: "Textura suave, perfecto para para consumirlo. Elaborado siguiendo técnicas tradicionales.",
+    image: {
+        png: "/images/yogur.png",
+        webp: "/images/yogurt.webp",
+        alt: "yogurt natural"
+    }
+  },
+  
+]
+---
+
+<section class="w-full bg-green-200 pt-[220px]">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl  text-amber-900 mb-4">
+        Nuestros Productos
+      </h2>
+      <p class="text-gray-600 text-lg md:text-xl">
+        Productos artesanales elaborados con los más altos estándares de calidad
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 gap-6">
+      {
+        products.map(({ title, description, image }) => (
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden"
+          data-aos="fade-left"
+          data-aos-delay="100"
+          data-aos-duration="500"
+          >
+            <picture class="block w-full aspect-video">
+              <source srcset={image.webp} type="image/webp" />
+              <img
+                src={image.png}
+                alt={image.alt}
+                class="w-full h-full object-contain"
+                loading="lazy"
+              />
+            </picture>
+            
+            <div class="p-6  ">
+              <div class="flex flex-col h-min-[180px] justify-center">
+                <h3 class="flex items-center justify-center text-xl h-16 text-center font-bold text-amber-900 mb-2">
+                  {title}
+                </h3>
+                <p class="text-center text-gray-600">
+                  {description}
+                </p>
+              </div>
+
+              <div class="flex justify-center mt-4">
+                <Button
+                  url="/contacto"
+                  className="rounded-lg text-amber-900 border-2 border-amber-800 hover:text-white hover:bg-amber-800 text-lg md:text-xl text__glowing"
+                >
+                  Comprar Producto
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

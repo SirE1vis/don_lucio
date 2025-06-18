@@ -1,0 +1,140 @@
+---
+import Logo from "@/components/Logo.astro"
+import HeaderLink from "@/components/HeaderLink.astro"
+import FacebookIcon from "@/components/icons/Facebook.astro"
+import InstagramIcon from "@/components/icons/Instagram.astro"
+import TiktokIcon from "@/components/icons/TikTok.astro"
+
+const currentYear = new Date().getFullYear()
+
+const navLinks = [
+    { href: '/', text: 'Home' },
+    { href: '/about', text: 'Nosotros' },
+    { href: '/galeria', text: 'Galeria' }
+]
+
+const socialLinks = [
+    { 
+        href: 'https://facebook.com', 
+        text: 'Facebook',
+        Icon: FacebookIcon 
+    },
+    { 
+        href: 'https://instagram.com', 
+        text: 'Instagram',
+        Icon: InstagramIcon 
+    },
+    { 
+        href: 'https://tiktok.com', 
+        text: 'Tik Tok',
+        Icon: TiktokIcon 
+    }
+]
+
+const institutions = [
+  {
+    
+    webp: import.meta.env.BASE_URL + "images/midagri.webp",
+    png: import.meta.env.BASE_URL + "images/midagri.png",
+    alt: "MIDAGRI",
+  },
+  {
+    webp: "/images/agro-rural.webp",
+    png: "/images/agro-rural.png",
+    alt: "Agro Rural",
+  },
+  {
+    webp: "/images/avanzar-rural.webp",
+    png: "/images/avanzar-rural.png",
+    alt: "Avanzar Rural",
+  },
+  {
+    webp: "/images/fida.webp",
+    png: "/images/fida.png",
+    alt: "FIDA",
+  }
+];
+
+---
+
+<footer class="w-full  bg-black/85 text-white py-10">
+    <div class="container mx-auto px-2 md:px-4">
+        <h3 class="text-lg w-full text-center md:text-xl font-semibold pb-6 md:pb-12 z-10">COFINANCIADO POR:</h3>
+        <div class="flex flex-wrap items-center justify-center gap-8 mb-8">
+        {
+            institutions.map(({ alt, webp, png}) => (
+            <picture>
+                <source 
+                srcset={webp} 
+                type="image/webp"
+                
+                />
+                    <img
+                    src={png}
+                    alt={alt}
+                    class="h-14 bg-white px-2 py-1 rounded-md  object-contain"
+                    loading="lazy"
+                    
+                    />
+            </picture>
+            ))
+        }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3   items-start ">
+            
+            {/* Logo and Social Media */}
+            <div class="flex flex-col items-center gap-4 md:gap-6 ">
+                <div class="w-24 h-24 md:w-40 md:h-40">
+                    <Logo />
+                </div>
+                
+            </div>
+
+            {/*Social Media */}
+            <div class="flex flex-col py-6 md:py-0 items-center gap-4 md:gap-6">
+                <h3 class="text-[16px] md:text-lg  md:mb-2">REDES SOCIALES</h3>
+                
+                <div class="flex gap-y-5 gap-x-8 md:gap-x-10">
+                    {socialLinks.map(({ href, text,Icon }) => (
+                        <a 
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-white transition-colors w-10 h-10"
+                            aria-label={text}
+                        >
+                            <Icon class="w-full h-full" />
+                        </a>
+                    ))}
+                </div>
+            </div>
+
+            {/* Web Map */}
+            <div class="flex flex-col pb-6 md:py-0  items-center gap-4 md:gap-6">
+                <h3 class="text-[16px] md:text-lg  md:mb-2">WEB MAP</h3>
+                <nav>
+                    <ul class="flex  items-center gap-y-2 gap-x-10  md:gap-4">
+                        {navLinks.map(({ href, text }) => (
+                            <li>
+                                <HeaderLink 
+                                    href={href}
+                                    class="text__glowing transition-colors"
+                                >
+                                    {text}
+                                </HeaderLink>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</footer>
+<div class="w-full border-t-2 bg-black/85 border-white">
+        <div class="container mx-auto py-10"> 
+            <p class="text-center text-sm md:text-base text-gray-300">
+                © {currentYear} Don Sa Saa. Todos los derechos reservados.
+        </p>
+</div>

@@ -1,0 +1,89 @@
+---
+import CalidadIcon from '@/components/icons/Calidad.astro'
+import SaborIcon from '@/components/icons/Sabor.astro'
+import VariedadIcon from '@/components/icons/Variedad.astro'
+import SaludableIcon from '@/components/icons/Saludable.astro'
+
+const features = [
+  {
+    title: "Sabor Tradicional",
+    description:"Más de 25 años preservando el auténtico sabor del queso artesanal.",
+    Icon: SaborIcon,
+    color: "text-white"
+  },
+  {
+    title: "Calidad Premium",
+    description:"Selección de los mejores ingredientes y control riguroso en cada proceso.",
+    Icon: CalidadIcon,
+    color: "text-white"
+  },
+  {
+    title: "Variedad de Productos",
+    description: "Amplia gama de productos para satisfacer todos los gustos.",
+    Icon: VariedadIcon,
+    color: "text-white"
+  },
+  {
+    title: "Nutritivo y Saludable",
+    description:"Productos nutritivos y saludables para su bienestar y confort.",
+    Icon: SaludableIcon,
+    color: "text-white"
+  },
+];
+
+const mainImage = {
+  webp: "/images/caracteristicas-main.webp",
+  png: "/images/caracteristicas-main.png",
+  alt: "img-carcteristicas",
+};
+---
+
+<section class="w-full py-5 px-2 sm:px-8 md:px-8">
+  
+    <div class="flex flex-col items-center justify-center lg:flex-row h-full"> 
+      {/* Left side - Image */}
+      <div class="w-full lg:w-1/2 hidden lg:flex  justify-center lg:h-[440px]"
+      data-aos="fade-right"> 
+        <div class="flex items-center"> 
+          <picture class="w-full h-full max-w-2xl rounded-2xl overflow-hidden block shadow-xl">
+            <source srcset={mainImage.webp} type="image/webp" />
+            <source srcset={mainImage.png} type="image/png" />
+            <img
+              src={mainImage.png}
+              alt={mainImage.alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+      </div>
+
+      {/* Right side - Features */}
+      <div class="w-full h-full lg:w-1/2 px-2 "
+      data-aos="fade-left"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 gap-y-6 md:gap-y-14">
+          {
+            features.map(({ title, description, Icon }) => (
+              <div class="relative border-2 border-amber-800 p-6 rounded-xl shadow-md">
+                
+                <div class="absolute -translate-y-1/2 left-1/2 -translate-x-1/2 top-0 w-[75px] h-[65px] bg-amber-800 rounded-2xl shadow-lg flex items-center justify-center">
+                  <Icon class="w-12 h-12 text-white" />
+                </div>
+                
+                <div class="w-full flex text-center flex-col mt-4">
+                  <h3 class=" text-lg font-bold text-amber-900 my-4">
+                    {title}
+                  </h3>
+                  <p class="text-gray-600 text-sm">
+                    {description}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  
+</section>

@@ -1,0 +1,70 @@
+---
+import Logo from "@/components/Logo.astro";
+import HeaderLink from "@/components/HeaderLink.astro";
+import MenuIcon from "@/components/icons/Menu.astro";
+import CloseIcon from "@/components/icons/Close.astro";
+
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/about", text: "Nosotros" },
+  { href: "/contacto", text: "Contacto" },
+];
+---
+
+<header id="header-nav" class="fixed top-0 w-full px-6 py-4 z-50 bg-amber-500">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="/" class="relative flex z-10" aria-label="Inicio">
+      <div class="inline-flex items-center gap-2 lg:gap-5 w-auto h-auto ">
+        <span class="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 inline-flex items-center justify-center"> <Logo /> </span>
+        <span class="font-rocket text-[20px] sm:[24px]  md:text-[26px] whitespace-nowrap"
+          >Don Sa Saa</span
+        >
+      </div>
+    </a>
+
+    {/* Navigation menu */}
+    <nav
+      id="header-menu"
+      class="fixed w-full h-screen inset-0 backdrop-blur-sm md:backdrop-blur-none flex flex-col items-center justify-center
+    translate-y-[-100%] transition-transform duration-300 [&:target]:translate-y-0
+    md:static md:h-auto md:bg-transparent md:flex-row md:translate-y-0 md:justify-end bg-amber-600"
+    >
+      {/* Logo for mobile view */}
+      <ul
+        class="flex flex-col md:flex-row items-center gap-10 md:gap-x-8 lg:gap-x-20 md:mr-10 lg:mr-20"
+      >
+        {
+          navLinks.map(({ href, text }) => (
+            <li>
+              <HeaderLink
+                class="text__glowing text-black text-[17px] md:text-[20px] transition-colors font-rocket"
+                href={href}
+              >
+                {text}
+              </HeaderLink>
+            </li>
+          ))
+        }
+      </ul>
+
+      {/* Close button */}
+      <a
+        href="#header-nav"
+        class="md:hidden absolute top-6 right-6 p-2 hover:bg-white/15 rounded-lg transition-colors"
+        aria-label="Cerrar menú"
+      >
+        <span class="text-white"><CloseIcon /></span>
+      </a>
+    </nav>
+
+    {/* Menu button*/}
+    <a
+      href="#header-menu"
+      class="text-white md:hidden p-2 hover:bg-black/20 rounded-lg transition-colors"
+      aria-label="Abrir menú"
+    >
+      <MenuIcon />
+    </a>
+  </div>
+</header>
+

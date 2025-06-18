@@ -1,0 +1,75 @@
+---
+import Button from "@/components/Button.tsx";
+---
+
+<section class="relative px-24 top-[120px] h-dvh w-full max-w-[100vw] sm:aspect-video sm:h-[75vh] xl:h-full">
+  <div class="absolute inset-0 h-full justify-center z-10 m-auto flex flex-col items-center w-full bg-gradient-to-b from-transparent to-black/15">
+    <section class="absolute z-20 animate-fade-up flex justify-center items-center flex-col text-white/85">
+      <h1 class="flex text-center tracking-[10px] gap-8 md:gap-10 pb-10">
+        QUESO HUAROCHIRANO
+      </h1>
+      <h2 class="flex items-center gap-8 md:gap-10 text-4xl md:text-5xl lg:gap-20 lg:text-7xl pt-10 text-black/85">
+        <div class="tracking-[14px] md:tracking-[20px] font-extrabold text-black/85">DON</div>
+        <div class="tracking-[14px] md:tracking-[20px] font-extrabold text">SA SAA</div>
+      </h2>
+      <div class="text-center  font-semibold text-[16px] md:text-xl pt-3 pb-10 md:pb-20 text-black">
+        <p >Somos una asociación dedicada a la producción artesanal de</p>
+        <p>quesos y derivados lácteos de alta calidad.</p>
+      </div>
+      <div class="mt-8 md:mt-2">
+        <Button
+          className="font-bold text-black bg-amber-600 text-18px md:text-[20px] "
+          url="/contacto"
+        >
+          CONTÁCTANOS
+        </Button>
+      </div>
+    </section>
+
+    <div class="absolute inset-0 w-full h-full">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        id="main-video"
+        preload="metadata"
+        class="video hidden md:block h-full w-full object-cover object-top animate-duration-[2s] animate-ease-in-out"
+      >
+        <source src="/video.webm" type="video/webm" />
+        <source src="/video.mp4" type="video/mp4" />
+      </video>
+      
+      <div class="absolute inset-0 bg-gradient-to-r from-amber-800 to-gray-500/35"></div>
+    </div>
+  </div>
+  
+</section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const firstVideo = document.querySelector("#main-video") as HTMLMediaElement
+
+    if (firstVideo) {
+      const videos = document.querySelectorAll(
+        ".video"
+      ) as NodeListOf<HTMLMediaElement>
+
+      if (firstVideo.readyState >= 3) {
+        videos.forEach((videoEl) => {
+          videoEl.classList.remove("hidden")
+          videoEl.classList.add("animate-fade")
+        })
+        return
+      }
+
+      firstVideo.addEventListener("loadeddata", () => {
+        videos.forEach((videoEl) => {
+          videoEl.classList.remove("hidden")
+          videoEl.classList.add("animate-fade")
+        })
+      })
+    }
+  })
+</script>
+
