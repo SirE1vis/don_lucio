@@ -18,7 +18,7 @@ const baseUrl = import.meta.env.BASE_URL;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="prueba" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
 		<meta name="robots" content="nofollow, noindex" />
 		<title>{title}</title>
@@ -83,10 +83,10 @@ const baseUrl = import.meta.env.BASE_URL;
 				font-display: swap;
 			}
 
-			html {
-			font-family: "poppins", system-ui, sans-serif;
-			/* background: #191602f1 */
-			
+			html, body {
+			width: 100%;
+			max-width: 100vw;
+			overflow-x: hidden;
 			}
 
 			h1,h2,h3 {
@@ -104,13 +104,13 @@ const baseUrl = import.meta.env.BASE_URL;
 			}
 
 			::-webkit-scrollbar-thumb {
-				background: rgba(255, 255, 255, 0.3);
+				background: rgba(255, 255, 255, 0);
 				backdrop-filter: blur(10px);
 				border-radius: 5px;
 			}
 
 			::-webkit-scrollbar-thumb:hover {
-				background: rgba(0, 0, 0, 0.5);
+				background: rgb(66, 62, 62);
 			}
 			
 			.text__glowing {
