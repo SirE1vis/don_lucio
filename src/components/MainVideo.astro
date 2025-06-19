@@ -100,8 +100,8 @@ import Logo from "@/components/Logo.astro";
       preload="metadata"
       class="video hidden h-full w-full object-cover object-top animate-duration-[2s] animate-ease-in-out"
     >
-      <source src="/video.webm" type="video/webm" />
-      <source src="/video.mp4" type="video/mp4" />
+      <source src=`${import.meta.env.BASE_URL}/video.webm` type="video/webm"/>
+      <source src=`${import.meta.env.BASE_URL}/video.mp4` type="video/mp4" />
     </video>
     <div
       class="absolute h-full w-full inset-0 bg-gradient-to-t from-black/85 to-amber-900/65 z-10"
@@ -111,14 +111,14 @@ import Logo from "@/components/Logo.astro";
 
   
   <video
-    class="video hidden absolute -bottom-44 -z-40 blur-2xl animate-duration-[2s] animate-ease-in-out"
+    class="video hidden absolute -bottom-44 -z-40 blur-3xl animate-duration-[2s] animate-ease-in-out"
     autoplay
     loop
     muted
     preload="metadata"
   >
-    <source src="/video.webm" />
-    <source src="/video.mp4" type="video/mp4" />
+    <source src=`${import.meta.env.BASE_URL}/video.webm` type="video/webm" />
+    <source src=`${import.meta.env.BASE_URL}/video.mp4` type="video/mp4" />
   </video>
 </div>
 

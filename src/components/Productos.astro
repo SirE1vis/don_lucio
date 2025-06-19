@@ -6,8 +6,8 @@ const products = [
     title: "Queso Fresco Pasteurizado",
     description: "Queso artesanal elaborado con leche fresca de alta calidad, suave textura y sabor delicado.",
     image: {
-        png: "/images/queso-fresco.png",
-        webp: "/images/queso-fresco.webp",
+        png: `${import.meta.env.BASE_URL}/images/queso-fresco.png`,
+        webp: `${import.meta.env.BASE_URL}/images/queso-fresco.webp`,
         alt: "queso-fresco"
     }
   },
@@ -16,8 +16,8 @@ const products = [
     title: "Queso con Orégano",
     description: "Queso madurado con sabor intenso y textura firme, ideal para degustar en familia.",
     image: {
-        png: "/images/queso-pasteurizado.png",
-        webp: "/images/queso-pasteurizado.webp",
+        png: `${import.meta.env.BASE_URL}/images/queso-pasteurizado.png`,
+        webp: `${import.meta.env.BASE_URL}/images/queso-pasteurizado.webp`,
         alt: "queso con orégano"
     }
   },
@@ -26,8 +26,8 @@ const products = [
     title: "Yogurt Natural",
     description: "Textura suave, perfecto para para consumirlo. Elaborado siguiendo técnicas tradicionales.",
     image: {
-        png: "/images/yogur.png",
-        webp: "/images/yogurt.webp",
+        png: `${import.meta.env.BASE_URL}/images/yogurt.png`,
+        webp: `${import.meta.env.BASE_URL}/images/yogurt.webp`,
         alt: "yogurt natural"
     }
   },
@@ -35,7 +35,7 @@ const products = [
 ]
 ---
 
-<section class="w-full bg-green-200 pt-[220px]">
+<section class="w-full pt-[220px]">
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl  text-amber-900 mb-4">
