@@ -7,7 +7,7 @@ const mainImage = {
 ---
 
 <section
-  class="w-full py-16 lg:py-24 bg-gradient-to-b from-amber-50/30 to-white relative overflow-hidden"
+  class="w-full py-16 lg:py-24  relative overflow-hidden"
 >
   <!-- Decorative background elements -->
   <div class="absolute inset-0 pointer-events-none">
@@ -157,17 +157,17 @@ const mainImage = {
         <div class="relative group">
           <!-- Decorative frame -->
           <div
-            class="absolute -inset-4 bg-gradient-to-br from-amber-400/20 via-orange-400/10 to-yellow-400/20 rounded-3xl blur-xl opacity-60"
+            class="absolute -inset-4 bg-white"
           >
           </div>
 
           <!-- Main image container -->
-          <div class="relative bg-white p-4 rounded-3xl shadow-2xl">
+          <div class="relative bg-white p-4">
             <div class="block rounded-2xl overflow-hidden">
               <img
                 src={mainImage.webp}
                 alt={mainImage.alt}
-                class="w-full h-[400px] lg:h-[500px] object-cover transition-all duration-700"
+                class="w-full h-[400px] lg:h-[600px] object-cover transition-all duration-700 rounded-2xl"
                 loading="lazy"
                 onerror={`this.onerror=null; this.src='${mainImage.png}';`}
               />
