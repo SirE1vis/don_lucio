@@ -5,23 +5,24 @@ import MenuIcon from "@/components/icons/Menu.astro";
 import CloseIcon from "@/components/icons/Close.astro";
 
 const navLinks = [
-  { href: "/don_lucio/", text: "Home" },
-  { href: "/don_lucio/about", text: "Nosotros" },
-  { href: "/don_lucio/contacto", text: "Contacto" },
+  { href: "/", text: "Home" },
+  { href: "/about", text: "Nosotros" },
+  { href: "/contacto", text: "Contacto" },
 ];
 ---
 
-<header id="header-nav" class="fixed top-0 w-full px-6 py-4 z-50 bg-amber-500">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
-    <a href="/don_lucio/" class="relative flex z-10" aria-label="Inicio">
-      <div class="inline-flex items-center gap-2 lg:gap-5 w-auto h-auto">
+<header id="header-nav" class="fixed top-0 w-full h-full z-50 bg-amber-500 px-6 header-height flex items-center transition-transform duration-300 ">
+  <div class="max-w-7xl mx-auto flex justify-between w-full items-center h-full relative">
+    
+    <a href="/" class="relative flex items-center z-10" aria-label="Inicio">
+      <div class="inline-flex items-center gap-2 lg:gap-5 lg:pl-5 w-auto h-auto">
         <span
-          class="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 inline-flex items-center justify-center"
+          class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 inline-flex items-center justify-center"
         >
           <Logo />
         </span>
         <span
-          class="font-rocket text-[20px] sm:[24px] md:text-[26px] whitespace-nowrap font-bold"
+          class="font-rocket text-[20px] sm:[24px] md:text-[26px]  whitespace-nowrap font-semibold"
           >
           Don Sa Saa
         </span>
@@ -33,7 +34,7 @@ const navLinks = [
       id="header-menu"
       class="fixed w-full h-screen inset-0 backdrop-blur-sm md:backdrop-blur-none flex flex-col items-center justify-center
     translate-y-[-100%] transition-transform duration-300 [&:target]:translate-y-0
-    md:static md:h-auto md:bg-transparent md:flex-row md:translate-y-0 md:justify-end bg-amber-600"
+    md:static md:h-auto  md:flex-row md:translate-y-0 md:justify-end"
     >
       {/* Logo for mobile view */}
       <ul
@@ -43,7 +44,7 @@ const navLinks = [
           navLinks.map(({ href, text }) => (
             <li>
               <HeaderLink
-                class="text__glowing text-black text-[17px] md:text-[20px] transition-colors font-rocket"
+                class=" text-black/85 text__glowing text-[20px] md:text-[22px] transition-colors font-rocket"
                 href={href}
               >
                 {text}
@@ -62,8 +63,6 @@ const navLinks = [
         <span class="text-white"><CloseIcon /></span>
       </a>
     </nav>
-
-    {/* Menu button*/}
     <a
       href="#header-menu"
       class="text-white md:hidden p-2 hover:bg-black/20 rounded-lg transition-colors"
@@ -73,3 +72,30 @@ const navLinks = [
     </a>
   </div>
 </header>
+
+<script>
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  function updateHeader() {
+    const header = document.getElementById('header-nav');
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down - hide header
+      header?.classList.add('-translate-y-full');
+    } else {
+      // Scrolling up - show header
+      header?.classList.remove('-translate-y-full');
+    }
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll);
+</script>

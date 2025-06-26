@@ -1,0 +1,277 @@
+---
+// Importación de componentes de iconos
+import RotateIcon from "@/components/icons/SaborTradicional.astro";
+import HeartIcon from "@/components/icons/TradicionFamiliar.astro";
+import CheckCircleIcon from "@/components/icons/Limpieza.astro";
+
+const pastoreoInfo = [
+  {
+    icon: RotateIcon,
+    color: "text-green-800",
+    title: "Pastoreo Rotativo",
+    description:
+      "Implementamos un sistema de pastoreo rotativo que permite la regeneración natural de los pastos y garantiza una alimentación nutritiva y sostenible para nuestras vacas.",
+    features: [
+      "Rotación cada 3-5 días según la estación",
+      "Descanso de 21-28 días por parcela",
+      "Mejora la calidad del suelo",
+    ],
+  },
+  {
+    icon: HeartIcon,
+    color: "text-red-600",
+    title: "Cuidado y Bienestar",
+    description:
+      "El bienestar de nuestras vacas es primordial. Mantenemos un programa integral de cuidado que incluye monitoreo veterinario regular y condiciones de vida óptimas.",
+    features: [
+      "Revisiones veterinarias semanales",
+      "Alimentación balanceada y natural",
+      "Espacios amplios para movimiento libre",
+    ],
+  },
+  {
+    icon: CheckCircleIcon,
+    color: "text-green-500",
+    title: "Higiene y Limpieza",
+    description:
+      "Mantenemos los más altos estándares de higiene en todas las instalaciones para garantizar la salud del ganado y la calidad de la leche producida.",
+    features: [
+      "Limpieza diaria de establos y bebederos",
+      "Desinfección regular de equipos",
+      "Protocolos sanitarios estrictos",
+    ],
+  },
+];
+const galeria = [
+  {
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/pastoreo.webp`,
+      png: `${import.meta.env.BASE_URL}images/pastoreo.png`,
+      alt: "libre pastoreo",
+    },
+    title: "Pastoreo Natural",
+    subtitle: "Vacas Holstein en campos abiertos",
+  },
+  {
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/cuidado.webp`,
+      png: `${import.meta.env.BASE_URL}images/cuidado.png`,
+      alt: "cuidado vacuno",
+    },
+    title: "Cuidado Veterinario",
+  },
+  {
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/bebedero.webp`,
+      png: `${import.meta.env.BASE_URL}images/bebedero.png`,
+      alt: "sistema-bebederos",
+    },
+    title: "Bebederos Limpios",
+  },
+  {
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/campo.webp`,
+      png: `${import.meta.env.BASE_URL}images/pastoreo/instalaciones.png`,
+      alt: "establo-limpio",
+    },
+    title: "Instalaciones",
+  },
+  {
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/vacas.webp`,
+      png: `${import.meta.env.BASE_URL}images/vacas.png`,
+      alt: "vacas-en-grupo",
+    },
+    title: "Vida Social",
+  },
+];
+// Estadísticas
+const estadisticas = [
+  { valor: "120", label: "Vacas en Pastoreo", color: "green" },
+  { valor: "85 Ha", label: "Área de Pastoreo", color: "blue" },
+  { valor: "24/7", label: "Monitoreo", color: "purple" },
+  { valor: "100%", label: "Natural", color: "orange" },
+];
+---
+
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <div class="p-6 flex flex-col flex-grow">
+        <div class="flex-grow flex flex-col justify-start">
+          <h2
+            class="text-3xl md:text-4xl text-center text-amber-700 placeholder:min-h-[3rem] flex items-center justify-center tracking-widest"
+          >
+            Pastoreo y Cuidado
+          </h2>
+          <p
+            class="text-lg md:text-xl text-center text-black/75 flex-grow flex items-start justify-center max-w-3xl mx-auto pt-8"
+          >
+            Nuestro compromiso con el bienestar animal y la calidad de nuestros
+            productos lácteos comienza en los campos de pastoreo
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div class="space-y-8" data-aos="fade-right" data-aos-delay="500">
+        {
+          pastoreoInfo.map((info, index) => (
+            <div
+              class={`bg-white rounded-xl shadow-lg border-l-4 border-${info.color}-500`}
+            >
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex items-center mb-4">
+                  <div class={`bg-${info.color}-100 p-3 rounded-full mr-4`}>
+                    <info.icon class={`w-8 h-8 ${info.color}`} />
+                  </div>
+                  <div class="flex-grow flex flex-col justify-start">
+                    <h3 class="text-xl md:text-2xl text-left text-amber-700 mb-2 min-h-[2.5rem] flex items-center justify-start">
+                      {info.title}
+                    </h3>
+                  </div>
+                </div>
+                <div class="flex-grow flex flex-col justify-start">
+                  <p class="text-base md:text-lg text-left text-black/75 flex-grow flex items-start justify-start leading-relaxed mb-4">
+                    {info.description}
+                  </p>
+                </div>
+                <ul class="space-y-2 text-black/75">
+                  {info.features.map((feature) => (
+                    <li class="flex items-center">
+                      <span
+                        class={`w-2 h-2 bg-${info.color}-500 rounded-full mr-3`}
+                      />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Galería de Fotos - Lado Derecho -->
+      <div class="space-y-6" data-aos="fade-left" data-aos-delay="200">
+        <div class="p-6 flex flex-col flex-grow">
+          <div class="flex-grow flex flex-col justify-start">
+            <h3
+              class="text-xl md:text-2xl text-center text-amber-700 mb-6 min-h-[2.5rem] flex items-center justify-center"
+            >
+              Nuestras Vacas en Pastoreo
+            </h3>
+          </div>
+        </div>
+
+        <!-- Foto Principal -->
+        <div
+          class="relative overflow-hidden rounded-2xl shadow-2xl"
+          data-aos="zoom-in"
+          data-aos-delay="300"
+        >
+          <div>
+            <img
+              src={galeria[0].image.webp}
+              alt={galeria[0].image.alt}
+              class="w-full h-80 object-cover transform hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              onerror={`this.onerror=null; this.src='${galeria[0].image.png}';`}
+            />
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+          >
+          </div>
+          <div class="absolute bottom-4 left-4 text-white">
+            <div class="p-2 flex flex-col flex-grow">
+              <div class="flex-grow flex flex-col justify-start">
+                <h4
+                  class="text-base md:text-lg text-left text-white mb-1 min-h-[1.5rem] flex items-center justify-start font-semibold"
+                >
+                  {galeria[0].title}
+                </h4>
+                <p
+                  class="text-sm md:text-base text-left text-white/90 flex-grow flex items-start justify-start"
+                >
+                  {galeria[0].subtitle}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galería de Fotos Pequeñas -->
+        <div class="grid grid-cols-2 gap-4">
+          {
+            galeria.slice(1).map((foto, index) => (
+              <div
+                class="relative overflow-hidden rounded-xl shadow-lg"
+                data-aos="fade-up"
+                data-aos-delay={(index + 4) * 100}
+              >
+                <div class="relative overflow-hidden rounded-xl shadow-lg">
+                  <img
+                    src={foto.image.webp}
+                    alt={foto.image.alt}
+                    class="w-full h-48 object-cover transform hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                    onerror={`this.onerror=null; this.src='${foto.image.png}';`}
+                  />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div class="absolute bottom-2 left-2 text-white">
+                  <div class="p-1 flex flex-col flex-grow">
+                    <div class="flex-grow flex flex-col justify-start">
+                      <p class="text-xs md:text-sm text-left text-white flex-grow flex items-start justify-start font-medium">
+                        {foto.title}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Estadísticas -->
+        <div
+          class="bg-white rounded-xl shadow-lg p-6"
+          data-aos="fade-up"
+          data-aos-delay="800"
+        >
+          <div class="p-2 flex flex-col flex-grow">
+            <div class="flex-grow flex flex-col justify-start">
+              <h3
+                class="text-xl md:text-2xl text-center text-amber-700/85 mb-3 min-h-[2rem] flex items-center justify-center tracking-widest"
+              >
+                Nuestros Números
+              </h3>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-6">
+            {
+              estadisticas.map((stat) => (
+                <div class="text-center">
+                  <div class="p-2 flex flex-col flex-grow">
+                    <div class="flex-grow flex flex-col justify-start">
+                      <div
+                        class={`text-xl md:text-2xl text-center mb-1 min-h-[2.5rem] flex items-center justify-center text-black/65 font-rocket`}
+                      >
+                        {stat.valor}
+                      </div>
+                      <div class="text-sm md:text-base text-center text-black/75 flex-grow flex items-start justify-center">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
