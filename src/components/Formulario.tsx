@@ -6,6 +6,7 @@ interface FormData {
   lastName: string;
   phone: string;
   email: string;
+  subject: string;
   message: string;
 }
 
@@ -30,6 +31,7 @@ const ERROR_MESSAGES = {
     lastName: "El apellido es requerido",
     phone: "El número de celular es requerido",
     email: "El email es requerido",
+    subject: "El asunto es requerido",
     message: "El mensaje es requerido",
   },
   invalid: {
@@ -40,6 +42,7 @@ const ERROR_MESSAGES = {
   },
   minLength: {
     phone: "El número debe tener al menos 9 dígitos",
+    subject: "El asunto debe tener al menos 3 caracteres",
     message: "El mensaje debe tener al menos 10 caracteres",
   },
 } as const;
@@ -50,6 +53,7 @@ const ContactForm = () => {
     lastName: "",
     phone: "",
     email: "",
+    subject: "",
     message: "",
   });
 
@@ -78,6 +82,8 @@ const ContactForm = () => {
         return !VALIDATION_RULES.email.test(value)
           ? ERROR_MESSAGES.invalid.email
           : undefined;
+      case "subject":
+        return value.length < 3 ? ERROR_MESSAGES.minLength.subject : undefined;
       case "message":
         return value.length < 10 ? ERROR_MESSAGES.minLength.message : undefined;
       default:
@@ -138,6 +144,7 @@ const ContactForm = () => {
       netlifyFormData.append("last-name", formData.lastName);
       netlifyFormData.append("phone", formData.phone);
       netlifyFormData.append("email", formData.email);
+      netlifyFormData.append("subject", formData.subject);
       netlifyFormData.append("message", formData.message);
 
       const response = await fetch("/", {
@@ -153,6 +160,7 @@ const ContactForm = () => {
           lastName: "",
           phone: "",
           email: "",
+          subject: "",
           message: "",
         });
       } else {
@@ -241,7 +249,7 @@ const ContactForm = () => {
 
     return (
       <div
-        class={`fixed bottom-52 right-4 max-w-sm p-4 ${bgColor} border rounded-lg shadow-lg z-50 animate-pulse`}
+        class={`fixed bottom-52 right-4 max-w-sm p-4 ${bgColor} border rounded-lg shadow-lg z-50`}
       >
         <div class="flex items-center">
           <div class="flex-shrink-0">
@@ -308,6 +316,35 @@ const ContactForm = () => {
         <div class="grid sm:grid-cols-2 gap-4 text-black/50 text-[10px]">
           {renderInput("phone", "Número de celular", "tel", "987 872 231", "tel")}
           {renderInput("email", "Email", "email", "migmail@gmal.com", "email")}
+        </div>
+
+        <div>
+          <label
+            htmlFor="subject"
+            class="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Asunto
+          </label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            value={formData.subject}
+            onInput={(e) =>
+              handleInputChange(
+                "subject",
+                (e.target as HTMLInputElement).value
+              )
+            }
+            disabled={status === SubmissionStatus.LOADING}
+            class={`w-full px-4 py-3 border rounded-lg focus:ring-1 text-black/50 text-sm focus:ring-amber-600/75 focus:border-transparent transition-colors ${
+              errors.subject ? "border-red-300" : "border-gray-300"
+            } disabled:bg-gray-50 disabled:cursor-not-allowed`}
+            placeholder="¿De qué se trata tu mensaje?"
+          />
+          {errors.subject && (
+            <p class="mt-1 text-sm text-red-600">{errors.subject}</p>
+          )}
         </div>
 
         <div>
