@@ -1,0 +1,152 @@
+---
+import Logo from "@/components/Logo.astro";
+import HeaderLink from "@/components/HeaderLink.astro";
+import FacebookIcon from "@/components/icons/Facebook.astro";
+import InstagramIcon from "@/components/icons/Instagram.astro";
+import TiktokIcon from "@/components/icons/TikTok.astro";
+
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/about", text: "Nosotros" },
+  { href: "/contacto", text: "Contacto" },
+];
+
+const socialLinks = [
+  {
+    href: "https://facebook.com",
+    text: "Facebook",
+    Icon: FacebookIcon,
+  },
+  {
+    href: "https://instagram.com",
+    text: "Instagram",
+    Icon: InstagramIcon,
+  },
+  {
+    href: "https://tiktok.com",
+    text: "Tik Tok",
+    Icon: TiktokIcon,
+  },
+];
+
+const institutions = [
+  {
+    webp: `${import.meta.env.BASE_URL}images/midagri.webp`,
+    png: `${import.meta.env.BASE_URL}images/midagri.png`,
+    alt: "MIDAGRI",
+  },
+  {
+    webp: `${import.meta.env.BASE_URL}images/agro-rural.webp`,
+    png: `${import.meta.env.BASE_URL}images/agro-rural.png`,
+    alt: "Agro Rural",
+  },
+  {
+    webp: `${import.meta.env.BASE_URL}images/avanzar-rural.webp`,
+    png: `${import.meta.env.BASE_URL}images/avanzar-rural.png`,
+    alt: "Avanzar Rural",
+  },
+  {
+    webp: `${import.meta.env.BASE_URL}images/fida.webp`,
+    png: `${import.meta.env.BASE_URL}images/fida.png`,
+    alt: "FIDA",
+  },
+];
+
+const agriculturafamiliar = {
+  webp: `${import.meta.env.BASE_URL}images/agricultura-familiar.webp`,
+  png: `${import.meta.env.BASE_URL}images/agricultura-familiar.png`,
+  alt: "Agricultura Familiar",
+};
+---
+
+<footer
+  class="w-full overflow-x-clip border-b border-white bg-black/85 text-white mt-5 md:mt-10"
+>
+  <div class="w-full">
+    <h3 class="text-xl w-full text-center md:text-2xl pt-7 md:pt-7 z-10">
+      COFINANCIADO POR:
+    </h3>
+    <div class="flex flex-wrap items-center justify-center gap-8 p-8">
+      {
+        institutions.map(({ alt, webp, png }) => (
+          <div>
+            <img
+              src={webp}
+              alt={alt}
+              class="h-14 bg-white px-2 py-1 rounded-md  object-contain"
+              loading="lazy"
+              onerror={`this.onerror=null; this.src='${png}';`}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 items-start pt-8 md:pt-8">
+      <div class="flex flex-col items-center gap-4 md:gap-6 pb-6">
+        <div class="flex items-center justify-center md:justify-end gap-4 md:gap-8 w-full">
+          <div class="w-24 h-24 md:w-40 md:h-40">
+            <Logo />
+          </div>
+          <div >
+            <img
+              src={agriculturafamiliar.webp}
+              alt={agriculturafamiliar.alt}
+              class="w-[140px] h-auto bg-white px-2 py-1 rounded-md object-contain"
+              loading="lazy"
+              onerror={`this.onerror=null; this.src='${agriculturafamiliar.png}';`}
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col py-6 md:py-0 items-center gap-4 md:gap-6">
+        <h3 class="text-xl md:text-2xl md:mb-2">REDES SOCIALES</h3>
+
+        <div class="flex gap-y-5 gap-x-8 md:gap-x-10">
+          {
+            socialLinks.map(({ href, text, Icon }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-white transition-colors w-10 h-10"
+                aria-label={text}
+              >
+                <Icon class="w-full h-full" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-col pb-6 md:py-0 items-center gap-4 md:gap-6">
+        <h3 class="text-xl md:text-2xl md:mb-2">WEB MAP</h3>
+        <nav>
+          <ul class="flex items-center gap-y-2 gap-x-10 md:gap-4">
+            {
+              navLinks.map(({ href, text }) => (
+                <li>
+                  <a
+                    href={href}
+                    class="text__glowing text-lg md:text-xl transition-colors hover:text-amber-600 font-rocket"
+                  >
+                    {text}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="w-full border-t-2 bg-black/85 border-white">
+  <div class="container mx-auto py-10">
+    <p class="text-center text-lg md:xl text-white/85">
+      © {currentYear} Don Sa Saa. Todos los derechos reservados.
+    </p>
+  </div>
+</div>

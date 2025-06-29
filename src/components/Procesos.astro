@@ -1,0 +1,128 @@
+---
+const processes = [
+  {
+    title: "Recepción de Leche",
+    description: "Seleccionamos la mejor leche fresca de nuestros proveedores locales.",
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/proceso-1.webp`,
+      png: `${import.meta.env.BASE_URL}images/proceso-1.pn`,
+      alt: "Recepción de leche"
+    }
+  },
+  {
+    title: "Pasteurización",
+    description: "Calentamos la leche para iniciar con el proceso de pasteurización.",
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/proceso-2.webp`,
+      png: `${import.meta.env.BASE_URL}images/proceso-2.png`,
+      alt: "img-pasteurización"
+    }
+  },
+  {
+    title: "Adición de Cuajo Natural",
+    description: "Aplicamos un cuajo natural a la leche.",
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/proceso-3.webp`,
+      png: `${import.meta.env.BASE_URL}images/proceso-3.png`,
+      alt: "Elaboración de quesos"
+    }
+  },
+  {
+    title: "Corte y extracción del suero",
+    description: "Se realiza el corte uniforme y se retira el suero.",
+    image: {
+     webp: `${import.meta.env.BASE_URL}images/proceso-4.webp`,
+      png: `${import.meta.env.BASE_URL}images/proceso-4.png`,
+      alt: "Elaboración de quesos"
+    }
+  },
+  {
+    title: "Moldeado y compactación",
+    description: "Se realiza el moldeado del queso y se deja reposar para su compactación.",
+    image: {
+      webp: `${import.meta.env.BASE_URL}images/proceso-5.webp`,
+      png: `${import.meta.env.BASE_URL}images/proceso-5.png`,
+      alt: "Elaboración de quesos"
+    }
+  }
+]
+
+const mainImage = {
+  webp: `${import.meta.env.BASE_URL}images/proceso-main.webp`,
+  png: `${import.meta.env.BASE_URL}images/proceso-main.png`,
+  alt: "Proceso"
+}
+---
+
+<section class="relative w-full flex items-center justify-center mt-16 md:mt-24 px-4 md:px-10">
+  <div class="container max-w-[100dvw] overflow-visible px-4 md:px-8">
+    <div class="flex flex-col lg:flex-row gap-8 items-center justify-center lg:block ">
+      <div class="w-full max-w-2xl lg:w-[50%] backdrop-blur-sm rounded-xl shadow-lg py-6 space-y-8 relative z-10 lg:px-10 overflow-visible">
+        <h2 class="flex justify-center text-center text-3xl md:text-2xl  md:text-start pb-8 pt-4 text-amber-700">
+          PROCESO DE ELABORACIÓN DE QUESO
+        </h2>
+        {processes.map((step, index) => (
+          <div class={`relative flex justify-center py-2 p-2 overflow-visible ${
+            index % 2 === 0
+              ? 'border-b-2 border-r-2 border-amber-700/80'
+              : 'border-b-2 border-l-2 border-amber-700/80'
+          }`}
+          class="bg-white rounded-xl shadow-lg overflow-hidden"
+          data-aos="zoom-in"
+          data-aos-delay={index * 100}
+          data-aos-duration="800"
+          >    
+            {/* Step number with adjusted positioning */}
+            <span
+              class={`absolute sm:text-lg  md:text-xl font-semibold md:font-extrabold text-white
+                bg-amber-600 w-20 h-10 md:w-24 md:h-14 rounded-lg flex justify-center items-center
+                top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
+                ${index % 2 === 0
+                  ? 'md:left-auto md:right-[-3rem] md:top-1/2 md:-translate-y-1/2 md:translate-x-0'
+                  : 'md:right-auto md:left-[-3rem] md:top-1/2 md:-translate-y-1/2 md:translate-x-0'
+                }`}
+            >
+              Paso {index + 1}
+            </span>
+
+            {/* Content wrapper with proper spacing */}
+            <div class="relative z-10">
+              <div class={`flex flex-row items-center gap-6 ${index % 2 === 0 ? '' : 'flex-row-reverse'}`}>
+                <div class="w-1/3 lg:min-w-[150px]">
+                  <div class="w-full rounded-lg overflow-hidden block">
+                    <img
+                      src={step.image.webp}
+                      alt={step.image.alt}
+                      class="w-full h-full object-cover rounded-lg"
+                      loading="lazy"
+                      onerror={`this.onerror=null; this.src='${step.image.png}';`}
+                    />
+                  </div>
+                </div>
+               
+                <div class={`w-2/3 text-center mt-6 sm:mt-0  ${index % 2 === 0 ? 'sm:mr-16 md:mr-12' : 'sm:ml-16 md:ml-12'}`}>
+                  <h3 class="text-lg md:text-xl  text-amber-700 mb-2">{step.title}</h3>
+                  <p class="text-base md:text-lg text-black/85">{step.description}</p>
+                </div>
+              </div>
+            </div>
+          </div>  
+        ))}
+      </div>
+
+      <div class="absolute top-0 right-0 w-[50%] h-full hidden lg:block">
+        <div class="w-full h-full ">
+          <img
+            src={mainImage.webp}
+            alt={mainImage.alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror={`this.onerror=null; this.src='${mainImage.png}';`}
+          />
+        </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-l from-amber-600/75 to-transparent"></div>
+      </div>
+    </div>
+  </div>
+</section>

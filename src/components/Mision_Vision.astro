@@ -1,0 +1,166 @@
+---
+import MisionIcon from './icons/Mision.astro'
+import VisionIcon from './icons/Vision.astro'
+import ValoresIcon from './icons/Valores.astro'
+
+const items = [
+  {
+    title: "MISIÓN",
+    text: "Producir quesos artesanales de alta calidad, preservando las tradiciones y sabores auténticos de nuestra región.",
+    Icon: MisionIcon,
+    color: "from-red-500 to-orange-500",
+    delay: "0"
+  },
+  {
+    title: "VISIÓN",
+    text: "Ser referentes en la producción de quesos artesanales, innovando y manteniendo la excelencia en cada producto.",
+    Icon: VisionIcon,
+    color: "from-cyan-500 to-teal-500",
+    delay: "200"
+  },
+  {
+    title: "VALORES",
+    text: "Calidad, tradición, compromiso y responsabilidad social guían nuestro trabajo diario.",
+    Icon: ValoresIcon,
+    color: "from-amber-500 to-yellow-500",
+    delay: "400"
+  }
+];
+---
+
+<section class="w-full py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
+  <!-- Section Header -->
+  <div class="w-[90%] lg:w-[75%] mx-auto mb-16">
+    <div 
+      class="text-center"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+        Nuestra Esencia
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-amber-500 mx-auto rounded-full"></div>
+      <p class="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+        Los pilares fundamentales que definen nuestra identidad y compromiso
+      </p>
+    </div>
+  </div>
+
+  <!-- Main container -->
+  <div class="w-[90%] lg:w-[75%] mx-auto">
+    <!-- Cards container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+      {
+        items.map(({ title, text, Icon, color, delay }) => (
+          <div 
+            class="relative"
+            data-aos="zoom-in"
+            data-aos-duration="600"
+            data-aos-delay={delay}
+          >
+            <!-- Card Container -->
+            <div class="relative bg-white rounded-2xl shadow-lg overflow-hidden h-full min-h-[400px] flex flex-col">
+              
+              <!-- Header with gradient background -->
+              <div class={`
+                relative h-32 bg-gradient-to-br ${color}
+                flex items-center justify-center
+              `}>
+                
+                <!-- Background Icon -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-10">
+                  <Icon class="w-24 h-24 text-black" />
+                </div>
+                
+                <!-- Icon Container -->
+                <div class="relative z-10">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
+                    <Icon class="w-8 h-8 text-white drop-shadow-lg" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Content Container -->
+              <div class="flex-1 flex flex-col p-6 lg:p-8 text-center">
+                
+                <!-- Title -->
+                <h3 class="text-xl md:text-2xl  text-black/85 mb-4 tracking-wide">
+                  {title}
+                </h3>
+                
+                <!-- Separator line -->
+                <div class={`w-12 h-1 bg-gradient-to-r ${color} mx-auto mb-6 rounded-full`}></div>
+                
+                <!-- Description -->
+                <div class="flex-1 flex items-center justify-center">
+                  <p class="text-lg md:xl text-black/75 text-overflow-safe">
+                    {text}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Decorative elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-10 w-32 h-32 bg-gradient-to-br from-red-200/20 to-orange-200/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-10 w-40 h-40 bg-gradient-to-br from-cyan-200/20 to-teal-200/20 rounded-full blur-3xl"></div>
+    <div class="absolute top-3/4 left-1/2 w-36 h-36 bg-gradient-to-br from-amber-200/20 to-yellow-200/20 rounded-full blur-3xl"></div>
+  </div>
+</section>
+
+<style>
+  /* Enhanced grid layout */
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* Improved responsive behavior */
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Ensure consistent card heights */
+  @media (min-width: 768px) {
+    .grid > div > div {
+      height: 100%;
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .shadow-lg {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .bg-gradient-to-br, .bg-gradient-to-r {
+      background: #6b7280 !important;
+      color: white !important;
+    }
+  }
+
+  /* Text overflow prevention */
+  .text-overflow-safe {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+</style>
+
