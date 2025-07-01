@@ -6,22 +6,68 @@ import "../styles/global.css";
 import Footer from "@/components/Footer.astro";
 import Navbar from "@/components/Navbar.astro";
 import WhatsAppIcon from "@/components/icons/WhatsApp.astro";
+
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  noindex?: boolean;
+  keywords?: string;
+  author?: string;
+  type?: string;
 }
-const { title } = Astro.props;
+const { 
+  title,
+  description = "Don Sa Saa - Asociación de Ganadería Saavedra dedica a la producción de queso huarohirano y yogurt de calidad. Contacta con nosotros para más información sobre nuestros productos y servicios.",
+  image = "/og-image.jpg",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  noindex = false, 
+  keywords = "Don Sa Saa, queso huarochirano, yogurt, anchucaya,asociación de ganadería saavedra",
+  author = "Don Sa Saa",
+  type = "website"
+} = Astro.props;
+
+const siteName = "Don Sa Saa";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const fullImageURL = new URL(image, Astro.site).href;
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="prueba" />
+    <meta name="description" content={description} 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO Básico -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageURL} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageURL} />
+    <meta name="twitter:site" content="@donsasaa" />
+
     <link rel="shortcut icon" href={`/favicon.ico?v=${faviconVersion}`} />
     <link rel="icon" type="image/png"  href={`/favicon.png?v=${faviconVersion}`} />
-    <meta name="robots" content="nofollow, noindex" />
-    <title>Don Sa Saa | {title}</title>
+    <link rel="manifest" href="/manifest.json" />
+
     <ClientRouter />
 
     <link

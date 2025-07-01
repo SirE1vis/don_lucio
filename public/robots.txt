@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Bloquear archivos innecesarios para SEO
+Disallow: /admin/
+Disallow: /_astro/
+Disallow: /api/
+
+# Sitemap principal
+Sitemap: https://donsasaa.com/sitemap-index.xml
