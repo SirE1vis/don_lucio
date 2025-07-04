@@ -174,7 +174,7 @@ const ContactForm = () => {
 
   const resetStatus = () => setStatus(SubmissionStatus.IDLE);
 
-  // Auto-hide notifications after 3 seconds
+  // Auto-hide notifications after 5 seconds
   useEffect(() => {
     if (
       status === SubmissionStatus.SUCCESS ||
@@ -182,11 +182,21 @@ const ContactForm = () => {
     ) {
       const timer = setTimeout(() => {
         setStatus(SubmissionStatus.IDLE);
-      }, 3000);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
   }, [status]);
+
+  const getInputClasses = (field: keyof FormData): string => {
+    const baseClasses = "w-full px-4 py-3 rounded-lg text-sm transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed outline-none";
+    
+    if (errors[field]) {
+      return `${baseClasses} border-2 border-red-300 focus:border-red-500`;
+    }
+    
+    return `${baseClasses} border border-gray-300 focus:border-amber-600`;
+  };
 
   const renderInput = (
     field: keyof FormData,
@@ -217,9 +227,7 @@ const ContactForm = () => {
           handleInputChange(field, (e.target as HTMLInputElement).value)
         }
         disabled={status === SubmissionStatus.LOADING}
-        class={`w-full px-4 py-3 border rounded-lg focus:ring-1 focus:ring-amber-600/75 focus:border-transparent transition-colors text-sm ${
-          errors[field] ? "border-red-300" : "border-gray-300"
-        } disabled:bg-gray-50 disabled:cursor-not-allowed`}
+        class={getInputClasses(field)}
         placeholder={placeholder}
         autocomplete={autocomplete}
       />
@@ -231,25 +239,30 @@ const ContactForm = () => {
 
   const NotificationMessage = ({ type }: { type: "success" | "error" }) => {
     const isSuccess = type === "success";
-    const bgColor = isSuccess
-      ? "bg-green-50 border-green-200"
-      : "bg-red-50 border-red-200";
-    const iconColor = isSuccess ? "text-green-400" : "text-red-400";
-    const textColor = isSuccess ? "text-green-800" : "text-red-800";
-    const hoverColor = isSuccess
-      ? "hover:text-green-600"
-      : "hover:text-red-600";
-    const message = isSuccess
-      ? "¡Mensaje enviado con éxito! Te responderemos pronto."
-      : "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+    const config = {
+      success: {
+        bgColor: "bg-green-50 border-green-200",
+        iconColor: "text-green-400",
+        textColor: "text-green-800",
+        hoverColor: "hover:text-green-600",
+        message: "¡Mensaje enviado con éxito! Te responderemos pronto.",
+        iconPath: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+      },
+      error: {
+        bgColor: "bg-red-50 border-red-200",
+        iconColor: "text-red-400",
+        textColor: "text-red-800",
+        hoverColor: "hover:text-red-600",
+        message: "Error al enviar el mensaje. Por favor, inténtalo de nuevo.",
+        iconPath: "M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+      }
+    };
 
-    const iconPath = isSuccess
-      ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-      : "M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z";
+    const { bgColor, iconColor, textColor, hoverColor, message, iconPath } = config[type];
 
     return (
       <div
-        class={`fixed bottom-52 right-4 max-w-sm p-4 ${bgColor} border rounded-lg shadow-lg z-50`}
+        class={`fixed bottom-52 right-4 max-w-sm p-4 ${bgColor} border rounded-lg shadow-lg z-50 animate-fade-in`}
       >
         <div class="flex items-center">
           <div class="flex-shrink-0">
@@ -268,7 +281,7 @@ const ContactForm = () => {
             <button
               type="button"
               onClick={resetStatus}
-              class={`inline-flex ${iconColor} ${hoverColor}`}
+              class={`inline-flex ${iconColor} ${hoverColor} transition-colors`}
             >
               <span class="sr-only">Cerrar</span>
               <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -285,6 +298,9 @@ const ContactForm = () => {
     );
   };
 
+  const isFormValid = Object.values(errors).every(error => !error) && 
+    Object.values(formData).every(value => value.trim() !== "");
+
   return (
     <div class="relative">
       <form
@@ -296,7 +312,7 @@ const ContactForm = () => {
       >
         <input type="hidden" name="form-name" value="contact" />
 
-        <div class="grid sm:grid-cols-2 gap-4 text-black/50 text-base">
+        <div class="grid sm:grid-cols-2 gap-4">
           {renderInput(
             "firstName",
             "Nombres",
@@ -313,9 +329,9 @@ const ContactForm = () => {
           )}
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-4 text-black/50 text-[10px]">
+        <div class="grid sm:grid-cols-2 gap-4">
           {renderInput("phone", "Número de celular", "tel", "987 872 231", "tel")}
-          {renderInput("email", "Email", "email", "migmail@gmal.com", "email")}
+          {renderInput("email", "Email", "email", "Ingresa tu email", "email")}
         </div>
 
         <div>
@@ -337,10 +353,8 @@ const ContactForm = () => {
               )
             }
             disabled={status === SubmissionStatus.LOADING}
-            class={`w-full px-4 py-3 border rounded-lg focus:ring-1 text-black/50 text-sm focus:ring-amber-600/75 focus:border-transparent transition-colors ${
-              errors.subject ? "border-red-300" : "border-gray-300"
-            } disabled:bg-gray-50 disabled:cursor-not-allowed`}
-            placeholder="¿De qué se trata tu mensaje?"
+            class={getInputClasses("subject")}
+            placeholder="Asunto . . . ."
           />
           {errors.subject && (
             <p class="mt-1 text-sm text-red-600">{errors.subject}</p>
@@ -366,26 +380,24 @@ const ContactForm = () => {
               )
             }
             disabled={status === SubmissionStatus.LOADING}
-            class={`w-full px-4 py-3 border rounded-lg focus:ring-1 text-black/50 text-sm focus:ring-amber-600/75 focus:border-transparent transition-colors resize-none overflow-y-auto ${
-              errors.message ? "border-red-300" : "border-gray-300"
-            } disabled:bg-gray-50 disabled:cursor-not-allowed`}
+            class={`${getInputClasses("message")} resize-none overflow-y-auto`}
             placeholder="Escribe tu mensaje aquí..."
           />
           {errors.message && (
-            <p class="mt-1 text-base text-red-600">{errors.message}</p>
+            <p class="mt-1 text-sm text-red-600">{errors.message}</p>
           )}
         </div>
 
         <div class="flex justify-center">
           <button
             type="submit"
-            disabled={status === SubmissionStatus.LOADING}
-            class="w-3/4 border-2 bg-amber-500/90 font-rocket text-base md:text-lg text-black text__glowing hover:bg-amber-600 py-3 px-6 rounded-lg  focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-black/25"
+            disabled={status === SubmissionStatus.LOADING || !isFormValid}
+            class="w-3/4 border-2 border-amber-500 bg-amber-500/90 font-rocket text-base md:text-lg text-black hover:bg-amber-600 hover:border-amber-600 py-3 px-6 rounded-lg focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-amber-500/90"
           >
             {status === SubmissionStatus.LOADING ? (
               <div class="flex items-center justify-center">
                 <svg
-                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-black"
                   fill="none"
                   viewBox="0 0 24 24"
                 >

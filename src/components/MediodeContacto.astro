@@ -8,7 +8,7 @@ import EmailIcon from '@/components/icons/Email.astro'
   <div class="w-full container mx-auto px-4">
     {/* Header Section */}
     <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl  text-amber-900 mb-8">
+      <h2 class="text-3xl md:text-4xl text-amber-900 mb-8">
         Pongámonos en contacto
       </h2>
       <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
@@ -17,10 +17,10 @@ import EmailIcon from '@/components/icons/Email.astro'
     </div>
 
     {/* Contact Cards Container */}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
       {/* Phone Card */}
-      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-        <div class="flex flex-col items-center text-center">
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow min-h-[200px] flex flex-col">
+        <div class="flex flex-col items-center text-center flex-1">
           <div class="w-14 h-14 bg-amber-600 rounded-full flex items-center justify-center mb-4">
             <PhoneIcon class="w-8 h-8 text-white" />
           </div>
@@ -30,33 +30,33 @@ import EmailIcon from '@/components/icons/Email.astro'
           <p class="text-black/75 text-base mb-2">
             Celular
           </p>
-          <span class="text-amber-900 font-semibold text-base ">
-            9983 3435 232
+          <span class="text-amber-900 text-[15px] font-medium">
+            928 435 068
           </span>
         </div>
       </div>
 
       {/* Location Card */}
-      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-        <div class="flex flex-col items-center text-center">
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow min-h-[200px] flex flex-col">
+        <div class="flex flex-col items-center text-center flex-1">
           <div class="w-14 h-14 bg-amber-600 rounded-full flex items-center justify-center mb-4">
             <LocationIcon class="w-8 h-8 text-white" />
           </div>
-          <h3 class="text-base md:text-xl text-amber-900 mb-2">
+          <h3 class="text-lg md:text-xl text-amber-900 mb-2">
             Visítanos
           </h3>
           <p class="text-black/85 mb-2">
             Ubicación
           </p>
-          <address class="text-amber-900 text-base font-semibold not-italic">
-            123 Business Avenue, Lima, Perú
+          <address class="text-amber-900 text-[15px] not-italic leading-relaxed">
+            Car. Santiago de Anchucaya Nro. 01 Fnd. Huanchaca (Costado del Puente Huanchaca)
           </address>
         </div>
       </div>
 
       {/* Email Card */}
-      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-        <div class="flex flex-col items-center text-center">
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow min-h-[200px] flex flex-col">
+        <div class="flex flex-col items-center text-center flex-1">
           <div class="w-14 h-14 bg-amber-600 rounded-full flex items-center justify-center mb-4">
             <EmailIcon class="w-8 h-8 text-white" />
           </div>
@@ -66,8 +66,8 @@ import EmailIcon from '@/components/icons/Email.astro'
           <p class="text-black/75 text-base mb-2">
             Email
           </p>
-          <span class="text-amber-900 px-3 text-wrap font-semibold text-base">
-            saavedra@gmail.com
+          <span class="text-amber-900 text-[15px] font-medium break-all px-2">
+            asociacionganaderiasaavedra15@gmail.com
           </span>
         </div>
       </div>

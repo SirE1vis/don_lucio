@@ -6,9 +6,7 @@ const mainImage = {
 };
 ---
 
-<section
-  class="w-full py-16 lg:py-24  relative overflow-hidden"
->
+<section class="w-full pb-16 lg:pb-24 relative overflow-hidden">
   <!-- Decorative background elements -->
   <div class="absolute inset-0 pointer-events-none">
     <div
@@ -65,20 +63,20 @@ const mainImage = {
 
     <!-- Main content container -->
     <div
-      class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16  max-w-7xl mx-auto"
     >
       <!-- Text Content -->
       <div
-        class="order-2 lg:order-1"
+        class="order-2 lg:order-1 flex"
         data-aos="fade-right"
         data-aos-duration="800"
         data-aos-delay="200"
       >
         <div
-          class="bg-white/60 backdrop-blur-sm rounded-3xl p-8 lg:p-10 shadow-lg border border-amber-100/50"
+          class="bg-amber-100 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-amber-100/50 flex flex-col justify-center w-full h-[500px] lg:h-[600px]"
         >
           <!-- Section title -->
-          <div class="text-center mb-8">
+          <div class="text-center">
             <h3
               class="text-2xl md:text-3xl lg:text-4xl text-amber-900 mb-4 tracking-wide"
             >
@@ -87,40 +85,37 @@ const mainImage = {
 
             <!-- Decorative line -->
             <div
-              class="w-20 h-1 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full mb-6"
+              class="w-20 my-5 h-1 md:h-2 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full"
             >
             </div>
           </div>
 
           <!-- Story content -->
-          <div class="space-y-6 text-amber-900/90">
+          <div class="text-amber-900/90 flex-1 flex flex-col justify-center">
             <!-- Year badge and first paragraph -->
             <div class="relative">
-              <div
-                class="absolute -left-4 top-0 w-16 h-8 bg-gradient-to-r from-amber-500 to-orange-500 rounded-r-full flex items-center justify-center shadow-md"
-              >
-                <span class="text-black text-base font-bold">1998</span>
-              </div>
-
               <p
-                class="text-lg text-black/85 md:text-xl leading-relaxed text-justify pl-16"
+                class="text-base lg:text-lg text-black/85 leading-relaxed text-justify px-4"
               >
-                En el corazón de los Andes peruanos, nació nuestra asociación de
-                productores de queso "Don Lucio" en 1998. Todo comenzó cuando un
-                grupo de familias ganaderas decidió unir fuerzas para preservar
-                las técnicas tradicionales de elaboración de quesos artesanales.
+                En el corazón de Santiago de Anchucaya, nació nuestra <span
+                  class="font-semibold text-amber-600"
+                >
+                  Asociación de Ganadería Saavedra
+                </span>. Todo comenzó cuando un grupo de familias ganaderas
+                decidió unir fuerzas para preservar las técnicas tradicionales
+                de elaboración de quesos naturales y artesanales.
               </p>
             </div>
 
             <!-- Separator -->
-            <div class="flex items-center gap-4 py-2">
+            <div class="flex items-center gap-x-4 py-8">
               <div
-                class="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"
+                class="flex-1 h-[3px] bg-gradient-to-r from-transparent via-amber-300 to-transparent"
               >
               </div>
-              <div class="w-2 h-2 bg-amber-500 rounded-full"></div>
+              <div class="w-3 h-2 bg-amber-500 rounded-full"></div>
               <div
-                class="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"
+                class="flex-1 h-[3px] bg-gradient-to-r from-transparent via-amber-300 to-transparent"
               >
               </div>
             </div>
@@ -128,20 +123,22 @@ const mainImage = {
             <!-- Second paragraph with quote styling -->
             <div class="relative">
               <p
-                class="text-lg md:text-xl text-black/75 leading-relaxed text-justify pl-8 pr-4"
+                class="text-base lg:text-lg text-black/75 leading-relaxed text-justify px-4"
               >
-                Don Lucio Mamani, fundador y maestro quesero, transmitió su
-                pasión y conocimientos a toda una generación de productores
-                locales. Su visión de crear productos de calidad, respetando las
-                tradiciones y aprovechando la rica leche de las alturas, sentó
-                las bases de lo que hoy es nuestra asociación.
+                La Asociación de Ganadería Agropecuaria de Santiago de Anchucaya
+                comercializa sus productos bajo la marca <span
+                  class="text-amber-600 font-semibold"
+                >
+                  DON SA SAA</span
+                >. Nuestra visión de crear productos artesanales, naturales y de calidad;
+                respetando nuestras tradiciones ancestrales sentó las bases de lo
+                que hoy es nuestra marca DON SA SAA.
               </p>
             </div>
 
             <!-- Founder signature -->
-            <div class="text-right pt-4">
-              <p class="text-amber-700 font-semibold text-lg">— Don Lucio</p>
-              <p class="text-amber-600 text-sm">Fundador y Maestro Quesero</p>
+            <div class="text-right mt-4">
+              <p class="text-amber-700 font-semibold text-lg mt-8 w-auto bg-white">— Don Sa Saa</p>
             </div>
           </div>
         </div>
@@ -149,25 +146,22 @@ const mainImage = {
 
       <!-- Image Content -->
       <div
-        class="order-1 lg:order-2"
+        class="order-1 lg:order-2 flex"
         data-aos="fade-left"
         data-aos-duration="800"
         data-aos-delay="400"
       >
-        <div class="relative group">
+        <div class="relative group w-full">
           <!-- Decorative frame -->
-          <div
-            class="absolute -inset-4 bg-white"
-          >
-          </div>
+          <div class="absolute -inset-4 bg-white rounded-3xl"></div>
 
           <!-- Main image container -->
-          <div class="relative bg-white p-4">
-            <div class="block rounded-2xl overflow-hidden">
+          <div class="relative bg-white rounded-3xl h-[500px] lg:h-[600px]">
+            <div class="block rounded-2xl overflow-hidden h-full">
               <img
                 src={mainImage.webp}
                 alt={mainImage.alt}
-                class="w-full h-[400px] lg:h-[600px] object-cover transition-all duration-700 rounded-2xl"
+                class="w-full h-full object-cover transition-all duration-700 rounded-2xl"
                 loading="lazy"
                 onerror={`this.onerror=null; this.src='${mainImage.png}';`}
               />
